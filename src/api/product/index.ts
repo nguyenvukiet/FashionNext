@@ -107,9 +107,9 @@ const GET_PRODUCT = gql`
 
 export const productApi = {
   getProduct: async () => {
-    return await graphQLClient.request(GET_PRODUCT,{
-            search:"",
-            filter:{category_uid:{"eq":""}}
+    return await graphQLClient.request(GET_PRODUCT, {
+      search: "",
+      filter: { category_uid: { eq: "" } },
     });
-  }
+  },
 };
