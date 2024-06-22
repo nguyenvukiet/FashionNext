@@ -1,0 +1,83 @@
+.hamburger {
+    width: 2.4rem;
+    height: 2.4rem;
+    overflow: hidden;
+    @include mid-flex;
+    cursor: pointer;
+    @include min($res-mobile-min) {
+      display: none;
+    }
+    .icon-close {
+      display: none;
+      padding: 0.4rem;
+    }
+    &-label {
+      position: relative;
+      display: block;
+      height: 2.8rem;
+      cursor: pointer;
+      &::before,
+      &::after,
+      .hamburger-text {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 0.2rem;
+        background: $color-pri;
+      }
+      &::before,
+      &::after {
+        content: "";
+        transition: 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) left;
+      }
+      &::before {
+        top: 0;
+      }
+      &::after {
+        top: 1.2rem;
+      }
+    }
+    &-text {
+      top: 2.4rem;
+      &::before {
+        content: "CLOSE";
+        position: absolute;
+        top: 0.5rem;
+        right: 0;
+        left: 0;
+        color: $color-pri;
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+    &.active {
+      .hamburger-label:before {
+        left: -3.9rem;
+      }
+      .hamburger-label:after {
+        left: 3.9rem;
+      }
+      .hamburger-label .hamburger-text:before {
+        animation: moveUpThenDown 0.8s ease 0.2s forwards,
+          shakeWhileMovingUp 0.8s ease 0.2s forwards,
+          shakeWhileMovingDown 0.2s ease 0.8s forwards;
+      }
+      >img {
+        display: none;
+      }
+      .icon-close {
+        display: block;
+      }
+    }
+  }
+  
+
+
+
+  .header-burger {
+    @include min($res-mobile-min) {
+      display: none;
+    }
+  }
+  

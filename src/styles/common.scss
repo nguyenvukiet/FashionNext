@@ -1,0 +1,175 @@
+@import url('@/../../assets/font/Monsterrat/stylesheet.css');
+@import url('@/../../assets/font/Be-Vietnam-Pro/stylesheet.css');
+
+:root {
+    --size-hd: 6rem;
+    --pd-sc: 8rem;
+  --size-hd-sticky: 8rem;
+
+
+
+    @media (max-width: 1200px) {
+        --pd-sc: 4rem;
+    }
+
+    --rewidth: calc((100vw - 120rem)/2);
+
+    @media (max-width:1230px) {
+        --rewidth: 1.5rem;
+    }
+
+
+    --recont: calc(100vw - (100vw - 120rem)/2);
+
+    @media (max-width:1240px) {
+        --recont: calc(100%);
+    }
+}
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+
+    @media screen and (min-width: 2000px) {
+        font-size: 100%;
+    }
+}
+body {
+    margin: 0;
+    font-family: 'Be Vietnam Pro','san-serif'; 
+    font-size: 16px;
+    line-height: 1.55;
+    font-weight: 400;
+    color: #1A1A1A;
+    overflow: hidden auto;
+
+    @media screen and (min-width: 2000px) {
+        font-size: 20px;
+    }
+}
+$color-pri: #1A1A1A;
+$color-second: #C75D00;
+$color-third: #EC1C24;
+$color-four: #111927;
+$color-text: #121212;
+$color-white: #ffffff;
+$color-black: #101010 ;
+$color-red:#FF0000;
+$color-pink:#FF4A76;
+$color-grey:#8D8D8D;
+$txt-hover: #626262;
+$color-txt: #3C3A3A;
+
+
+$color-grey-3:#E5DED8;
+
+$color-border-01: rgba(0, 0, 0, 0.1);
+
+//Responsive
+$res-mobile: 1199px;
+$res-mobile-min: 1200px;
+$mobile: 500px;
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+select {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    cursor: pointer;
+
+}
+
+button {
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+    .text {
+        font-family: 'Be Vietnam Pro','san-serif'; 
+
+
+    }
+}
+
+input,
+textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-family: 'Be Vietnam Pro','san-serif'; 
+    border: none;
+    border-bottom: 0.1rem solid #B1B1B1;
+    outline: none;
+    background:transparent;
+    transition:0.3s ease-in-out;
+    font-size: 1.4rem;
+    padding: 0;
+    margin: 0;
+    height: 4.4rem;
+
+}
+
+.main,
+.site-main {
+    min-height: 65vh;
+    padding-top: var(--size-hd);
+}
+
+.container {
+    max-width: 192rem;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 4rem;
+
+   @media only screen and (max-width:1200px) {
+    padding: 0 1.5rem;
+   }
+}
+
+
+
+.no-scroll {
+    touch-action: none;
+    -webkit-overflow-scrolling: none;
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+iframe {
+    vertical-align: middle;
+}
+
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $color-pri;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $color-pri;
+}
+

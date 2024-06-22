@@ -1,0 +1,224 @@
+.footer {
+  overflow: hidden;
+  @include fz-14;
+  background: #e8e8e8;
+
+  &-wrap {
+    position: relative;
+    // border-top: 0.1rem solid $color-txt;
+  }
+  &-top {
+    .footer-flex {
+      @include max(1100px) {
+        grid-template-columns: repeat(2, 50%);
+      }
+    }
+    .footer-col {
+      background: #f9f9f9;
+    }
+  }
+  &-main {
+    .footer-col {
+      padding: 2rem 1.6rem;
+      background: #e8e8e8;
+      @include max(768px) {
+        padding: 0;
+        &:last-child {
+          padding: 2rem 1.5rem;
+        }
+      }
+    }
+  }
+
+  .menu-list,
+  .menu {
+    display: flex;
+    flex-direction: column;
+    margin-top: -0.8rem;
+
+    .menu-link,
+    a {
+      position: relative;
+      transition: 0.3s ease-in-out;
+      padding: 0.8rem 0;
+      display: inline-block;
+      @include max(768px) {
+        padding: 0.8rem 1.5rem;
+        width: 100%;
+      }
+
+      &::before {
+        left: 50%;
+        bottom: 0.4rem;
+        height: 0.1rem;
+        content: "";
+        position: absolute;
+        transform: translateX(-50%);
+        width: 0;
+        transition: 0.3s ease-in-out;
+        background: $color-black;
+      }
+      @include hover {
+        &:before {
+          width: 100%;
+        }
+      }
+    }
+  }
+  &-flex {
+    // display: flex;
+    // flex-wrap: wrap;
+
+    display: grid;
+    gap: 1px;
+    background-color: #3c3a3a;
+    border-top: 0.1rem solid #3c3a3a;
+    grid-template-columns: repeat(4, 25%);
+    @include max(1100px) {
+      grid-template-columns: repeat(2, 50%);
+    }
+    @include max(768px) {
+      grid-template-columns: repeat(1, 100%);
+    }
+  }
+  &-col {
+    &-top {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 0;
+      pointer-events: none;
+      @include max(768px) {
+        pointer-events: visible;
+        cursor: pointer;
+        padding: 2.4rem 1.5rem;
+        &.active {
+          .icon {
+            i {
+              display: block;
+              &:nth-child(1) {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+      > .icon {
+        @include mid-flex;
+        display: none;
+        @include max(768px) {
+          display: flex;
+        }
+        i {
+          display: none;
+          @include fz-20;
+          &:nth-child(1) {
+            display: block;
+          }
+        }
+      }
+    }
+    &-ctn {
+      @include min(767.99px) {
+        display: block !important;
+      }
+      @include max(768px) {
+        display: none;
+      }
+    }
+    &-inner {
+      @include max(768px) {
+        padding-bottom: 1.2rem;
+      }
+    }
+  }
+  &-item {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    padding: 1.6rem;
+    @include max(768px) {
+      gap: 0.8rem;
+      padding: 1.2rem 0.5rem;
+    }
+    .icon {
+      width: 2.4rem;
+      height: 2.4rem;
+      flex-shrink: 0;
+      @include mid-flex;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    &-desc {
+      .title {
+        @include max(768px) {
+          @include fz-12;
+        }
+      }
+      .txt {
+        @include max(768px) {
+          @include fz-12;
+        }
+      }
+    }
+  }
+  &-mail {
+    margin-top: 1rem;
+    input {
+      width: 100%;
+      padding: 0;
+    }
+  }
+
+  &-social {
+    display: flex;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+
+    &-item {
+      width: 3rem;
+      height: 3rem;
+      @include mid-flex;
+      padding: 0.2rem;
+
+      &:not(:hover) {
+        img {
+          filter: brightness(0) saturate(100%) invert(91%) sepia(2%)
+            saturate(14%) hue-rotate(312deg) brightness(79%) contrast(85%);
+        }
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: 0.3s ease-in-out;
+      }
+      @include hover {
+        img {
+          transform: translateY(-0.5rem);
+        }
+      }
+    }
+  }
+
+  &-sign {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 2.4rem 0;
+    justify-content: center;
+    border-top: 0.1rem solid $color-black;
+
+    .txt {
+      line-height: 1;
+    }
+
+    img {
+      height: 2.4rem;
+      object-fit: contain;
+    }
+  }
+}

@@ -1,0 +1,116 @@
+[
+  {
+    "id":"1",
+    "img": "/blog1.jpg",
+    "name": "Translating High Fashion for Men",
+    "date": "01/01/2023",
+    "desc": [
+      "Lorem Ipsum, Lorem Ipsum and others are true and accurate, but others are false. Lorem Ipsum, Lorem Ips lorem, Lorem Ipsum, Lorem",
+      "This item is unisex",
+      "Dropped shoulders",
+      "Concealed zip and snap closure",
+      "Ribbed trims",
+      "Dry cleaning"
+    ]
+  },
+  {
+    "id":"2",
+    "img": "/blog2.jpg",
+    "name": "Translating Fashion for Women",
+    "date": "01/03/2023",
+    "desc": [
+      "Lorem ipsum dolor sit amet Lorem Ipsum, Lorem Ipsum and others are true and accurate, but others are false. Lorem Ipsum, Lorem Ips lorem, Lorem Lorem Ipsum, Lorem Ipsum and others are true and accurate, but others are false. Lorem Ipsum, Lorem Ips lorem, Lorem ",
+      "Consectetur adipiscing elit",
+      "Sed do eiusmod tempor incididunt",
+      "Ut labore et dolore magna aliqua"
+    ]
+  },
+  {
+    "id":"3",
+    "img": "/blog3.jpg",
+    "name": "Translating High Fashion for Women",
+    "date": "01/07/2023",
+    "desc": [
+      "Lorem ipsum dolor sit amet Lorem Ipsum, Lorem Ipsum and others are true and accurate, but others are false. Lorem Ipsum, Lorem Ips lorem, Lorem Lorem Ipsum, Lorem Ipsum and others are true and accurate, but others are false. Lorem Ipsum, Lorem Ips lorem, Lorem ",
+      "Consectetur adipiscing elit",
+      "Sed do eiusmod tempor incididunt",
+      "Ut labore et dolore magna aliqua"
+    ]
+  },
+  {
+    "id":"4",
+    "img": "/pro5.jpg",
+    "name": "Translating High Fashion for Kids",
+    "date": "01/05/2023",
+    "desc": [
+      "Lorem Ipsum, Lorem Ipsum and others are true and accurate, but others are false. Lorem Ipsum, Lorem Ips lorem, Lorem Ipsum, Lorem",
+      "This item is unisex",
+      "Dropped shoulders",
+      "Concealed zip and snap closure",
+      "Ribbed trims",
+      "Dry cleaning"
+    ]
+  },
+  {
+    "id":"5",
+    "img": "/blog2.jpg",
+    "name": "Translating Fashion for Women",
+    "date": "10/10/2023",
+    "desc": [
+      "Lorem ipsum dolor sit amet Lorem Ipsum, Lorem Ipsum and others are true and accurate, but others are false. Lorem Ipsum, Lorem Ips lorem, Lorem Lorem Ipsum, Lorem Ipsum and others are true and accurate, but others are false. Lorem Ipsum, Lorem Ips lorem, Lorem ",
+      "Consectetur adipiscing elit",
+      "Sed do eiusmod tempor incididunt",
+      "Ut labore et dolore magna aliqua"
+    ]
+  },
+  {
+    "id":"6",
+    "img": "/pro4.jpg",
+    "name": "Translating High Fashion for Women",
+    "date": "09/09/2023",
+    "desc": [
+      "Lorem ipsum dolor sit amet Lorem Ipsum, Lorem Ipsum and others are true and accurate, but others are false. Lorem Ipsum, Lorem Ips lorem, Lorem Lorem Ipsum, Lorem Ipsum and others are true and accurate, but others are false. Lorem Ipsum, Lorem Ips lorem, Lorem ",
+      "Consectetur adipiscing elit",
+      "Sed do eiusmod tempor incididunt",
+      "Ut labore et dolore magna aliqua"
+    ]
+  },
+  {
+    "id":"7",
+    "img": "/aban-img.jpg",
+    "name": "Translating High Fashion for Kids",
+    "date": "01/05/2023",
+    "desc": [
+      "Lorem Ipsum, Lorem Ipsum and others are true and accurate, but others are false. Lorem Ipsum, Lorem Ips lorem, Lorem Ipsum, Lorem",
+      "This item is unisex",
+      "Dropped shoulders",
+      "Concealed zip and snap closure",
+      "Ribbed trims",
+      "Dry cleaning"
+    ]
+  },
+  {
+    "id":"8",
+    "img": "/about1.jpg",
+    "name": "Translating Fashion for Women",
+    "date": "10/10/2023",
+    "desc": [
+      "Lorem ipsum dolor sit amet Lorem Ipsum, Lorem Ipsum and others are true and accurate, but others are false. Lorem Ipsum, Lorem Ips lorem, Lorem Lorem Ipsum, Lorem Ipsum and others are true and accurate, but others are false. Lorem Ipsum, Lorem Ips lorem, Lorem ",
+      "Consectetur adipiscing elit",
+      "Sed do eiusmod tempor incididunt",
+      "Ut labore et dolore magna aliqua"
+    ]
+  },
+  {
+    "id":"9",
+    "img": "/pro1.jpg",
+    "name": "Translating High Fashion for Women",
+    "date": "09/09/2023",
+    "desc": [
+      "Lorem ipsum dolor sit amet Lorem Ipsum, Lorem Ipsum and others are true and accurate, but others are false. Lorem Ipsum, Lorem Ips lorem, Lorem Lorem Ipsum, Lorem Ipsum and others are true and accurate, but others are false. Lorem Ipsum, Lorem Ips lorem, Lorem ",
+      "Consectetur adipiscing elit",
+      "Sed do eiusmod tempor incididunt",
+      "Ut labore et dolore magna aliqua"
+    ]
+  }
+]

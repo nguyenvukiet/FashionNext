@@ -1,0 +1,252 @@
+.btn {
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+    height: 4.4rem;
+    width: fit-content;
+    overflow: hidden;
+    min-width: 11rem;
+    padding: 1rem 2rem;
+    @include mid-flex;
+    z-index: 5;
+
+    img {
+        position: relative;
+        z-index: 3;
+    }
+
+    .icon {
+        width: 2rem;
+        height: 2rem;
+        position: relative;
+        z-index: 3;
+        flex-shrink: 0;
+        @include mid-flex;
+
+        &:first-child {
+            margin-right: 0.8rem;
+        }
+
+        &:last-child {
+            margin-left: 0.8rem;
+            margin-right: -0.8rem;
+        }
+
+        img {
+            width: inherit;
+            height: inherit;
+        }
+
+        i {
+            transition: 0.4s;
+        }
+    }
+    &.center {
+        margin: auto;
+        margin-top: 2rem;
+    }
+    .text {
+        color: $color-white;
+        z-index: 3;
+        position: relative;
+        display: block !important;
+        white-space: nowrap;
+        font-weight: 500;
+        transition: 0.3s ease-in-out;
+        line-height: 1;
+        @include fz-14;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: calc(100% - 0.3rem);
+        height: calc(100% - 0.3rem);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        z-index: 2;
+        opacity: 0;
+        transition: 0.3s ease-in-out;
+    }
+
+    @include min($res-mobile-min) {
+        // @include hover {
+        //     &::after {
+        //     opacity: 1;
+
+        //     }
+        // }
+    }
+
+
+
+    &-pri {
+        @extend .btn;
+        background: $color-pri;
+        transition: 0.3s ease-in-out;
+        border: 0.1rem solid $color-pri;
+
+        .text {
+            color: $color-white;
+        }
+
+        .icon {
+            i {
+                color: $color-white;
+            }
+        }
+
+        @include hover {
+            background: rgba(60, 58, 58, 0.2);
+            .text {
+                color: $color-black;
+            }
+            .icon {
+                i {
+                    color: $color-black;
+                }
+            }
+        }
+    }
+
+    &-sec {
+        @extend .btn;
+        background: $color-second;
+        position: relative;
+        border: 0.1rem solid transparent;
+
+        &::before {
+            background:#fff;
+            content: "";
+            position: absolute;
+            display: block;
+            left: auto;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            transition: 0.3s ease;
+            z-index: -1;
+        }
+
+        .text {
+            color:#fff;
+        }
+
+        .icon {
+            i {
+                color: #fff;
+            }
+        }
+
+        @include hover {
+            border: 0.1rem solid $color-second;
+            &::before {
+                width: 100%;
+                left: 0;
+                right: auto;
+            }
+
+            .text {
+                color: $color-second;
+            }
+
+            .icon {
+                i {
+                    color: $color-second;
+                }
+            }
+        }
+    }
+
+
+    &-trans {
+        background:transparent;
+        transition: 0.3s ease-in-out;
+        box-shadow: none;
+        border: 0.1rem solid $color-pri;
+
+        .text {
+            color: $color-pri;
+        }
+        .icon {
+            i {
+                color: $color-pri;
+            }
+        }
+        @include hover {
+            background: rgba(60, 58, 58, 0.2);
+            .text {
+                color: $color-black;
+            }
+            .icon {
+                i {
+                    color: $color-black;
+                }
+            }
+        }
+    
+    }
+
+    &-dash {
+        border: 0.1rem dashed  #cbd5e1;
+
+        .text {
+            @include fz-16;
+            color: #000;
+            font-weight: 400;
+        }
+        
+    }
+    &.full {
+        width: 100%;
+    }
+    &-fat {
+        height: 6rem;
+        @include max(768px) {
+            
+        }
+    }
+
+    &.rotate {
+        .icon {
+            i {
+                transform: rotate(-45deg);
+            }
+        }
+        @include hover {
+            .icon {
+                i {
+                    transform: rotate(0);
+                }
+            }
+        }
+    }
+}
+
+.button-upload {
+    &-btn {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}
+
+.tlink {
+    @include fz-14;
+    position: relative;
+    font-weight: 500;
+    padding: 0.6rem;
+    &:before {
+        position: absolute;
+        content: "";
+        bottom: 0;
+        width: calc(100% - 1rem);
+        left: 50%;
+        transform: translateX(-50%);
+        background:$color-pri;
+        height: 0.1rem;
+
+    }
+}

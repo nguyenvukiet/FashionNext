@@ -1,0 +1,195 @@
+
+.ip-control {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &.x2 {
+    width: 50%;
+  }
+  &.x3 {
+    width: calc(100% / 3);
+  }
+  &.x4 {
+    width: 25%;
+  }
+
+  .t-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  input {
+    width: 100%;
+  }
+  textarea {
+    min-height: 5rem;
+    width: 100% !important;
+  }
+  .dateTime {
+    height: 5.2rem;
+  }
+  &.ip-pass {
+      input {
+        padding-right: 4rem;
+      }
+      .ip-feild {
+        position: relative;
+      }
+      .icon {
+        position: absolute;
+        top: 50%;
+        right: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2.4rem;
+        height: 2.4rem;
+        @include mid-flex;
+        color:#ADADAD;
+        cursor: pointer;
+        font-weight: 400;
+      }
+  }
+  &-input {
+    position: relative;
+    display: flex;
+    input {
+      flex: 1;
+    }
+  }
+  &-select {
+    width: 7rem;
+
+    .select2-selection__rendered,
+    .select2-container .select2-selection--single,
+    .select2-container {
+
+      border-right: none !important;
+    }
+  }
+  &-date {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .select2-container {
+    width: 100% !important;
+  }
+  .select2-container .select2-selection--single {
+    height: 4.4rem;
+  }
+  .select2-container .select2-selection--single,
+  .select2-selection__rendered {
+    display: flex !important;
+    align-items: center;
+    background: #fff;
+    width: 100%;
+    border-radius: 0 !important;
+    border-color: #B1B1B1;
+  }
+
+  .select2-selection__rendered {
+    padding: 0.4rem;
+    padding-left: 1.2rem;
+
+  }
+
+  .select2-selection__arrow {
+    height: 100% !important;
+  }
+  .ip-feild {
+    position: relative;
+  }
+  &.read-only {
+    input {
+      background: #E2E8F0;
+      color: #64748B;
+      border-color: #E2E8F0;
+    }
+  }
+}
+
+.select2-search--dropdown {
+  display: none;
+}
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+  background-color: $color-pri;
+}
+#file-selected-message {
+  .file-input-box {
+    display: flex;
+    gap: 1rem;
+    flex-wrap:wrap;
+    div {
+      height: 10rem;
+      width: auto;
+      img {
+        height: 100%;
+        object-fit: contain;
+        max-width: unset !important;
+      }
+    }
+  }
+}
+
+.time-deal {
+  .tcountdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    span {
+      border: 0.1rem solid $color-pink;
+      @include mid-flex;
+      padding: 0.5rem;
+      color: $color-pink;
+      min-width: 4rem;
+    }
+    &-inner {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+}
+
+
+
+.form-list {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 2.4rem;
+  margin: 0 -1.2rem;
+  @include max(1200px) {
+      margin: 0 -0.6rem;
+      row-gap: 2rem;
+  }
+  .ip-control {
+      padding: 0 1.2rem;
+      @include max(1200px) {
+          padding: 0 0.6rem;
+      }
+      &.x2 {
+          width: 50%;
+          @include max(550px) {
+              width: 100%;
+          }
+      }
+      &.x3 {
+          width: calc(100% / 3);
+      }
+      &.x4 {
+          width: 25%;
+      }
+  }
+}
+
+.re-select-main {
+  border: 0.1rem solid $color-pri;
+  height: 4rem;
+  padding: 0.5rem 1rem;
+  min-width: 10rem;
+  @include fz-16;
+}

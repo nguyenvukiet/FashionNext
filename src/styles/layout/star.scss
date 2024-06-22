@@ -1,0 +1,210 @@
+.star {
+    @include flex;
+    align-content: start;
+    &-list {
+        position: relative;
+    }
+    &-flex {
+        @include flex;
+        .icon {
+            width: 1.8rem;
+            height: 1.8rem;
+            &:not(:first-child) {
+                margin-left: 0.4rem;
+            }
+        }
+    }
+    &-filter {
+        overflow: hidden;
+        position: absolute;
+        @include posi-vertical;
+        left: 0;
+        height: 100%;
+        width: 0;
+    }
+}
+
+// css star rate
+.stars input {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+  }
+  
+  .stars input:nth-child(1):checked ~ label:nth-of-type(-n + 1),
+  .stars input:nth-child(2):checked ~ label:nth-of-type(-n + 2),
+  .stars input:nth-child(3):checked ~ label:nth-of-type(-n + 3),
+  .stars input:nth-child(4):checked ~ label:nth-of-type(-n + 4),
+  .stars input:nth-child(5):checked ~ label:nth-of-type(-n + 5) {
+    // background: url(../../../assets/images/star-fill.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  
+  .stars label {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-right: 6px;
+    height: 3rem;
+    width: 3rem;
+    // background: url(../../../assets/images/star.png);
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-size: contain;
+    margin: 0;
+
+    // &.active {
+    //   background: url(../../../assets/images/icon-star.svg);
+    // }
+  }
+
+  .stars {
+    .wpcf7-list-item {
+      margin-left: 0;
+    }
+    label {
+      .wpcf7-list-item-label {
+        display: none;
+      }
+    }
+  }
+  
+
+.srate {
+    padding: 6rem 0;
+    padding-top: 2rem;
+    @include max(992px) {
+      padding: 5rem 0;
+    }
+    &-flex {
+      display: flex;
+      margin: 0 -1.2rem;
+      margin-top: 4rem;
+      @include max(920px) {
+        flex-direction: column;
+        row-gap: 2rem;
+      }
+    }
+    &-left {
+      padding: 0 1.2rem;
+      width: 50%;
+      @include max(992px) {
+        width: 100%;
+      }
+    }
+    &-right {
+      padding: 0 1.2rem;
+      width: 50%;
+      @include max(992px) {
+        width: 100%;
+      }
+  
+      input {
+        &:checked ~ .dblog-re-list {
+          max-height: unset;
+  
+          &::after {
+            opacity: 0;
+            visibility: hidden;
+          }
+        }
+        &:checked ~ .btn-drop-text {
+          .text {
+            &:nth-child(1) {
+              display: none !important;
+            }
+            &:nth-child(2) {
+              display: block !important;
+            }
+          }
+          .icon {
+            transform: rotate(0deg);
+          }
+        }
+      }
+      .btn-drop-text {
+        width: max-content;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        margin-top: 2rem;
+        .btn {
+          display: flex;
+          flex-direction: column;
+          @include hover {
+            .icon {
+              color: $color-pri;
+            }
+          }
+        }
+  
+        .icon {
+          color: $color-pri;
+          margin: 0 !important;
+          width: 1.5rem;
+          height: auto;
+          @include mid-flex;
+          transform: rotate(180deg);
+        }
+      }
+    }
+    &-rate {
+      &-top {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+  
+        .text {
+          line-height: 1;
+        }
+      }
+      &-star {
+        display: flex;
+        flex-direction: column;
+  
+        .text {
+          color: $color-grey;
+        }
+      }
+      &-ctn {
+        margin-top: 1.2rem;
+      }
+      &-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+  
+        &:not(:last-child) {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+    &-line {
+      flex: 1;
+      width: 50%;
+      position: relative;
+      height: 0.6rem;
+      border-radius: 0.4rem;
+      overflow: hidden;
+  
+      &::before {
+        background: #f6f7f5;
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        inset: 0;
+      }
+  
+      &-inner {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: $color-second;
+        border-radius: 0.4rem;
+        z-index: 5;
+        height: 100%;
+      }
+    }
+  }

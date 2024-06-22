@@ -1,0 +1,406 @@
+.popup {
+    position: fixed;
+    @include full;
+    z-index: 999;
+    visibility: hidden;
+  
+    &.open {
+      visibility: visible;
+  
+      .popup-overlay {
+        opacity: 1;
+        visibility: visible;
+      }
+  
+      .popup-main {
+        opacity: 1;
+        visibility: visible;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      }
+    }
+  
+    &-overlay {
+      position: absolute;
+      background-color: rgba(7, 7, 7, 0.6);
+      @include full;
+      z-index: 1;
+      @include transitionRe;
+      opacity: 0;
+      visibility: hidden;
+    }
+  
+    &-main {
+      @include mid;
+      z-index: 2;
+      width: 80rem;
+      max-height: 90vh;
+      max-width: 95%;
+      @include transitionRe;
+      visibility: hidden;
+      position: relative;
+      background-color: $color-white;
+      padding: 2rem;
+      clip-path: polygon();
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      border: 0.1rem solid #3C3A3A;
+      @include max(768px) {
+        padding: 1.6rem;
+      }
+    }
+  
+    &-over {
+      overflow-y: auto;
+      max-height: 80vh;
+      padding: 0.1rem 0;
+      margin-right: -1rem;
+      padding-right: 1rem;
+    }
+  
+    &-wrapper {
+      width: 100%;
+      min-height: 30vh;
+      position: relative;
+    }
+  
+    &-title {
+      @include fz-24;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 1.6rem;
+    }
+  
+    &-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      width: 3rem;
+      height: 3rem;
+      @include mid-flex;
+      z-index: 100;
+  
+      &:hover {
+        .icon {
+          transform: rotate(180deg);
+        }
+      }
+  
+      .icon {
+        color: $color-black;
+        font-weight: 400;
+        font-size: 2rem;
+        @include transition(0.6s, ease-in-out);
+      }
+    }
+  
+    &-cart {
+      .popup {
+        &-main {
+          transform:none;
+          top: 0;
+          right: 0;
+          left: unset;
+          position: absolute;
+          border: 0;
+          padding: 0;
+          width: 50%;
+          min-width: 70rem;
+          height: 100%;
+          max-height: 100%;
+          @include max(1200px) {
+            min-width:unset;
+            width: 80%;
+          }
+          @include max(768px) {
+            min-width: unset;
+            width: 100%;
+            max-width: 100%;
+          }
+        }
+        &-over {
+          padding: 2rem;
+          padding-right: 3rem;
+          max-height: 100%;
+          @include max(768px) {
+            padding: 1.6rem;
+          }
+  
+        }
+        &-close {
+          width: 4rem;
+          height: 4rem;
+          background:#fff;
+          top: 0;
+          right: 0;
+        }
+      }
+      &-list {
+        margin-top: 2.4rem;
+      }
+      &-sum {
+        padding: 2rem 0;
+        display: flex;
+        flex-direction: column;
+        gap:1rem;
+      }
+      &-price {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 500;
+  
+      }
+      &-left {
+      }
+      &-control {
+        padding-top: 2.4rem;
+        border-top: 0.1rem solid $color-black;
+        .popup-cart-right {
+          @include fz-20;
+        }
+      }
+      &-btn {
+        margin-top: 2.4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .tlink {
+          padding: 1.6rem 0;
+          &::before {
+            bottom: 1.2rem;
+          }
+        }
+      }
+      &-option {
+        padding: 2.4rem 0;
+        border-top: 0.1rem solid #101010;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        .popup-cart-ubox {
+          > .txt {
+            margin-bottom: 1rem;
+          }
+        }
+      }
+    }
+    &-login{
+      @include fz-14;
+      .popup {
+        
+      }
+      &-inner {
+        .footer-social {
+          justify-content: center;
+          margin-top: 1.2rem;
+          &-item {
+            width: 2.8rem;
+            height: 2.8rem;
+          }
+          img {
+            filter: none;
+            
+          }
+        }
+      }
+      &-title {
+        display: flex;
+        align-items: center;
+        line-height: 1;
+        gap: 0.5rem;
+        .popup-close {
+            position: relative;
+            inset: 0;
+            transform: none;
+        }
+        .txt {
+          font-weight: 500;
+        }
+      }
+      &-form {
+        overflow: hidden;
+        margin-top: 1rem;
+        .d-flex {
+          justify-content: space-between;
+          flex-wrap: wrap;
+          row-gap: 1rem;
+          .link {
+            color: $color-pink;
+            @include hover {
+              text-decoration:underline;
+            }
+          }
+        }
+        .btn {
+          margin-top: 4rem;
+          height: 6rem;
+        }
+      }
+      &-txt {
+        margin-top: 0.8rem;
+        .link {
+          font-weight:500;
+          @include hover {
+            text-decoration:underline;
+          }
+        }
+      }
+      &-line {
+        @include mid-flex;
+        margin-top: 1rem;
+        .txt {
+          text-align: center;
+          line-height: 1;
+          background: #fff;
+          padding: 0.5rem;
+        }
+        position: relative;
+        &:before {
+          position: absolute;
+          content: "";
+          top: 50%;
+          transform: translateY(-50%);
+          width: 100%;
+          background: $color-black;
+          left: 0;
+          height: 0.1rem;
+          z-index: -1;
+        }
+      }
+    }
+    &-fb {
+      &-inner {
+        overflow: hidden;
+      }
+      &-star {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2.4rem;
+      }
+      &-control {
+        margin-top: 2rem;
+        #file-selected-message {
+          margin-bottom: 1rem;
+          ol {
+            padding-left: 2rem;
+            list-style: decimal;
+          }
+        }
+        .d-flex {
+          gap: 1rem;
+          @include max(400px) {
+            flex-direction: column;
+          }
+          .btn {
+            width: calc(50% - 0.5rem);
+            height: 6rem;
+            @include max(400px) {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+    &-sz {
+      @include fz-14;
+      .popup {
+        &-over {
+          margin-right: 0;
+          max-height: calc(100vh - 4rem);
+        }
+      }
+      &-tab {
+        padding: 2rem 0;
+      }
+      &-top {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        line-height: 1;
+      }
+      &-list {
+        display: flex;
+      }
+      &-item {
+        padding: 0.6rem 0.4rem;
+        @include mid-flex;
+        border: 0.1rem solid $color-pri;
+        color: $color-pri;
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+        min-width: 5rem;
+        &.active {
+          color: #fff;
+          background: $color-pri;
+        }
+      }
+      &-ctn {
+        margin-top: 2rem;
+      }
+      &-size {
+        &:not(:first-child) {
+          display: none;
+        }
+      }
+      &-img {
+        width: 100%;
+        // padding-bottom: 2rem;
+        display: flex;
+        img {
+          width: 100%;
+          object-fit: contain;
+        }
+      }
+      &-table {
+        padding: 2rem 0;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.3);
+  
+        table {
+          width: 100%;
+          border: 0.1rem solid $color-pri;
+          margin-top: 2rem;
+          @include max(768px) {
+            @include fz-12;
+          }
+          th {
+            text-align: left;
+            padding: 0.7rem 1rem;
+            font-weight: 600;
+            @include max(400px) {
+              padding: 0.7rem;
+            }
+  
+            &:not(:first-child) {
+              text-align: center;
+              border-left: 0.1rem solid $color-pri;
+            }
+          }
+          tr {
+            border-top: 0.1rem solid $color-pri;
+            td {
+              padding: 0.7rem 1rem;
+              @include max(400px) {
+                padding: 0.7rem;
+              }
+              &:not(:first-child) {
+                text-align: center;
+                border-left: 0.1rem solid $color-pri;
+              }
+              .txt {
+                font-weight: 600;
+                .fw-4 {
+                  font-weight: 400;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+ 
+
+  }
+  
+  

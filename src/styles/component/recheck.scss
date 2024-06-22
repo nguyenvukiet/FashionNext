@@ -1,0 +1,298 @@
+.recheck {
+  &-item {
+    @include flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+
+    input {
+      position: absolute;
+      inset: 0;
+      border: none;
+      outline: none;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    .recheck-input:checked {
+      ~ .recheck-checkbox {
+        background: $color-pri;
+        border-color: $color-pri;
+        .txt {
+          color: #fff;
+        }
+        &::before {
+          opacity: 1;
+          content: "\f00c";
+          color: white;
+        }
+      }
+      ~ .recheck-radio {
+        &::before {
+          opacity: 1;
+        }
+      }
+      ~ .recheck-dot {
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+    &.active {
+      .recheck-checkbox {
+        background: $color-pri;
+        border-color: $color-pri;
+        &::before {
+          opacity: 1;
+          content: "\f00c";
+          color: white;
+        }
+      }
+      .recheck-radio {
+        &::before {
+          opacity: 1;
+        }
+      }
+      .recheck-dot {
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &-checkbox {
+    width: 2rem;
+    height: 2rem;
+    background-color: white;
+    border: 0.2rem solid #334155;
+    transition: 0.3s ease-in-out;
+    position: relative;
+    flex-shrink: 0;
+    @include mid-flex;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    &::before {
+      content: "";
+      @include mid;
+      top: calc(50%);
+      position: absolute;
+      color: $color-pri;
+      font-size: 1.4rem;
+      @include mid-flex;
+      font-family: "Font Awesome 5 Pro";
+      transition: 0.3s ease-in-out;
+      font-weight: 300;
+      line-height: 1;
+    }
+    .txt {
+      @include fz-14;
+      line-height: 1;
+    }
+  }
+  &-radio {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 100rem;
+    border: 0.1rem solid $color-pri;
+    flex-shrink: 0;
+    position: relative;
+    &::before {
+      content: "";
+      @include mid;
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 100rem;
+      background-color: $color-pri;
+      opacity: 0;
+    }
+  }
+  &-method {
+    width: 4.8rem;
+    height: 4.8rem;
+    border: 0.1rem solid #ebebeb;
+    border-radius: 0.8rem;
+    @include mid-flex;
+    margin-left: 0.8rem;
+    img {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+  }
+  &-text {
+    margin-left: 0.8rem;
+    line-height: 1;
+
+    a {
+      transition: 0.3s ease-in-out;
+
+      @include hover {
+        color: $color-pri;
+      }
+    }
+  }
+  &-dot {
+    border-radius: 50%;
+    width: 1.8rem;
+    height: 1.8rem;
+    border: 0.1rem solid $color-black;
+    position: relative;
+    flex-shrink: 0;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 1.2rem;
+      height: 1.2rem;
+      border-radius: inherit;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: $color-pri;
+      opacity: 0;
+      transition: 0.3s ease-in-out;
+    }
+  }
+}
+
+.option-color {
+  .recheck {
+    &-block {
+      display: flex;
+      margin: 0 -0.5rem;
+      flex-wrap: wrap;
+    }
+    &-item {
+      padding: 0.5rem;
+      &.active {
+        .recheck-checkbox {
+          border-width: 0.2rem;
+          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        }
+      }
+    }
+    &-checkbox {
+      border-radius: 100rem;
+      overflow: hidden;
+      border: none;
+      border: 0.2rem solid $color-grey;
+    }
+  }
+}
+.option-size {
+  .recheck {
+    &-block {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    &-item {
+      &:not(:last-child) {
+        .recheck-checkbox {
+          border-right: none;
+        }
+      }
+      &.active {
+        .txt {
+          color: #fff;
+        }
+      }
+    }
+    &-checkbox {
+      width: fit-content;
+      min-width: 4rem;
+      height: 4rem;
+      border: 0.1rem solid $color-grey;
+      transition: 0.3s ease-in-out;
+      @include hover {
+        background: rgba(60, 58, 58, 0.05);
+      }
+      .txt {
+        transition: 0.3s ease-in-out;
+      }
+      &::before {
+        display: none;
+      }
+    }
+  }
+}
+
+.range {
+  .range-slider {
+    height: 0.8rem;
+    width: 100%;
+    background-color: #d9d9d9;
+    position: relative;
+    .progress {
+      position: absolute;
+      height: 0.8rem;
+      top: 0;
+      background-color: $color-pri;
+    }
+  }
+  .range-input {
+    position: relative;
+    input {
+      position: absolute;
+      top: -0.4rem;
+      height: 0.8rem;
+      width: 100%;
+      transform: translateY(-50%);
+      background: none;
+      pointer-events: none;
+      -webkit-appearance: none;
+      margin: 0;
+      padding: 0;
+      cursor: pointer;
+      border:none !important;
+      &:focus {
+        border: 0.1rem solid transparent;
+      }
+      &:first-child::-webkit-slider-thumb {
+        height: 1.6rem;
+        width: 1.6rem;
+      }
+      &::-webkit-slider-thumb {
+        height: 1.6rem;
+        width: 1.6rem;
+        border-radius: 50%;
+        pointer-events: auto;
+        -webkit-appearance: none;
+        background-color: $color-pri;
+        border: 0.3rem solid $color-pri;
+        z-index: 5;
+      }
+      &::-moz-slider-thumb {
+        height: 1.6rem;
+        width: 1.6rem;
+        border: none;
+        border-radius: 50%;
+        border: 0.3rem solid $color-pri;
+        pointer-events: auto;
+        -moz-appearance: none;
+        background-color: $color-white;
+        box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.16);
+      }
+    }
+  }
+  .text {
+    margin-top: 1.6rem;
+    font-size: 1.6rem;
+    color: #444444;
+    margin-bottom: 0.8rem;
+  }
+  .range-flex {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .range-item {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #444444;
+  }
+}

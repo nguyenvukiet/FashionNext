@@ -1,0 +1,185 @@
+.swiper {
+    &-pagination {
+        bottom: 0 !important;
+        &-bullet {
+            width: 1rem;
+            height: 1rem;
+            &-active {
+                background: $color-pri;
+            }
+        }
+    }
+}
+.swiper-control {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    --size: 3.8rem;
+    @include max(1200px) {
+      --size: 3.5rem;
+    }
+  
+    &-btn {
+      width: var(--size);
+      height: var(--size);
+      background: transparent;
+      border: 0.2rem solid $color-pri;
+      @include mid-flex;
+      cursor: pointer;
+      @include transitionRe;
+      z-index: 5;
+      position: relative;
+      font-size: 1.6rem;
+      border-radius: 100rem;
+      color: var(--color-pri);
+      > * {
+        position: relative;
+        z-index: 2;
+        color: $color-pri;
+      @include transitionRe;
+
+      }
+      @include hover {
+        &:before {
+          -webkit-animation: spin 5s linear infinite;
+          animation: spin 5s linear infinite;
+        }
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        @include mid;
+        width: calc(var(--size) + 1.4rem);
+        height: calc(var(--size) + 1.4rem);
+        border: 0.1rem dashed var(--color-pri);
+        border-radius: 100rem;
+        @include max(1200px) {
+          width: calc(var(--size) + 1rem);
+          height: calc(var(--size) + 1rem);
+        }
+      }
+      &.swiper-button-disabled {
+        background:transparent;
+        cursor: default;
+        box-shadow: none;
+        opacity: 0.3;
+     
+      }
+  
+      i {
+      }
+  
+      @include hover {
+        &:not(.swiper-button-disabled) {
+          color: white !important;
+  
+          background: var(--color-pri);
+        }
+      }
+    }
+  
+    &.white {
+      .swiper-control-btn {
+        background-color: transparent;
+        border-color: white;
+        color: white;
+      }
+  
+      &.mobile-plus {
+        .swiper-control-btn {
+          @include max(1350px) {
+            background-color: white;
+            border-color: var(--color-pri);
+            color: var(--color-pri);
+          }
+        }
+      }
+    }
+  
+    &.posi {
+      .swiper-control-btn {
+        @include posi-vertical;
+      }
+  
+      &.minus {
+        .swiper-prev {
+          right: calc(100% + 2.4rem);
+  
+          @include max(1350px) {
+            right: unset;
+            left: calc(var(--size) / 2 * -1);
+          }
+        }
+  
+        .swiper-next {
+          left: calc(100% + 2.4rem);
+  
+          @include max(1350px) {
+            left: unset;
+            right: calc(var(--size) / 2 * -1);
+          }
+        }
+  
+        &.mobile-plus {
+          @include max($res-mobile) {
+            .swiper-prev {
+              left: calc((var(--size) / 2 * -1) + (1.5rem / 2));
+            }
+  
+            .swiper-next {
+              right: calc((var(--size) / 2 * -1) + (1.5rem / 2));
+            }
+          }
+        }
+      }
+  
+      &.midle {
+        .swiper-prev {
+          left: calc(var(--size) / 2 * -1);
+        }
+  
+        .swiper-next {
+          right: calc(var(--size) / 2 * -1);
+        }
+      }
+  
+      &.plus {
+        .swiper-prev {
+          left: 1rem;
+        }
+  
+        .swiper-next {
+          right: 1rem;
+        }
+      }
+  
+      &.mobile-plus {
+        @include max($res-mobile) {
+          .swiper-prev {
+            left: calc((var(--size) / 2 * -1) + (1.5rem / 2));
+          }
+  
+          .swiper-next {
+            right: calc((var(--size) / 2 * -1) + (1.5rem / 2));
+          }
+        }
+      }
+    }
+  }
+  
+  .swiper-pagination-progressbar {
+    background: var(--color-black);
+    height: 0.1rem !important;
+  }
+  
+  .swiper-pagination-progressbar-fill {
+    background-color: var(--color-sec) !important;
+  }
+  @keyframes spin {
+    from {
+      transform:translate(-50%,-50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%,-50%) rotate(360deg);
+    }
+  }
