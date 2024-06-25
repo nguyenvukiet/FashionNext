@@ -5,10 +5,16 @@ import  faqItems  from '@/api/faq.json';
 import PopupFeedback from "@/component/comon/popup/PopupFeedback";
 import PopupSizeGuide from "@/component/comon/popup/PopupSize";
 import LightGalleryComponent from "@/component/comon/lightGallery/LightGallery";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useQuery } from "react-query";
+import { productApi } from "@/api/product";
+
+
 
 const PdpPage = () => {
 
-  console.log(faqItems?.[0].title)
+
 
 
   const [openIndex, setOpenIndex] = useState(null);
@@ -54,6 +60,22 @@ const PdpPage = () => {
     }
   }, [openFeedback]);
 
+  const { data: dataProduct, isLoading } = useQuery<any>({
+    queryKey: ["DATA_PRODUCT"],
+    queryFn: productApi.getProduct,
+  });
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+ const productItems = dataProduct.products.items;
+
+  const router = useRouter()
+  const productItem = productItems.find(item => item.url_key === router.query.slug); 
+
+  if (!productItem) {
+    return <div>Product post not found</div>;
+  }
+
   return (
     <>
       <div className="pdp">
@@ -81,15 +103,20 @@ const PdpPage = () => {
                         },
                       }}
                     >
-                      {/* {productItem.img.map((img, index) => (
-                        <SwiperSlide key={index}>
+                        <SwiperSlide key={1}>
                           <div className="bnh-parallax">
                             <div className="pdp-img inner">
-                              <img src={Object.values(img)[0]} alt="" />
+                              <img src={productItem.image.url} alt="" />
                             </div>
                           </div>
                         </SwiperSlide>
-                      ))} */}
+                        <SwiperSlide key={2}>
+                          <div className="bnh-parallax">
+                            <div className="pdp-img inner">
+                              <img src={productItem.image.url} alt="" />
+                            </div>
+                          </div>
+                        </SwiperSlide>
                     </Swiper>
                     <div className="swiper-control posi plus">
                       <div className="swiper-control-btn swiper-prev">
@@ -107,14 +134,14 @@ const PdpPage = () => {
                       <div className="breadcrumb-inner">
                         <ul className="breadcrumb-list">
                           <li className="breadcrumb-item" data-aos="fade-left">
-                            <a className="breadcrumb-link" href="/">
+                            <Link className="breadcrumb-link" href="/">
                               PRODUCT
-                            </a>
+                            </Link>
                           </li>
                           <li className="breadcrumb-item" data-aos="fade-left">
-                            <a className="breadcrumb-link" href="/">
-                              Product name json
-                            </a>
+                            <Link className="breadcrumb-link" href="/">
+                              {productItem.name}
+                            </Link>
                           </li>
                         </ul>
                       </div>
@@ -122,7 +149,7 @@ const PdpPage = () => {
                     <div className="pdp-gr">
                       <div className="pdp-row">
                         <h1 className="pdp-name">
-                          Product name json
+                          {productItem.name}
                           <span className="pdp-heart">
                             <i className="fa-regular fa-heart"></i>
                           </span>
@@ -132,13 +159,9 @@ const PdpPage = () => {
                         </p>
                         <div className="pdp-price">
                           <div className="price">
-                            <p className="price-odd">
-                              {/* {productItem.price.toLocaleString()}
-                              {productItem.currency} */}
-                            </p>
                             <p className="price-new">
-                              {/* {priceDiscountSimple.toLocaleString()}
-                              {productItem.currency} */}
+                            {productItem?.price_range?.maximum_price?.final_price?.value.toLocaleString()} - 
+                            {productItem?.price_range?.maximum_price?.final_price?.currency}
                             </p>
                           </div>
                           <p className="pdp-info">
@@ -151,74 +174,10 @@ const PdpPage = () => {
                           </p>
                         </div>
                       </div>
-                      {/* {productItem.type === "complie" ? (
-                        <>
                           <div className="pdp-row">
-                            <p className="txt">Color: </p>
-                            <div className="pdp-opt-color">
-                              <div className="cmini-option-row option-color">
-                                <div className="recheck">
-                                  <div className="recheck-block">
-                                    {productItem?.options?.color.map(
-                                      (productItem, index) => (
-                                        <div
-                                          className="recheck-item"
-                                          key={index}
-                                        >
-                                          <input
-                                            // checked={
-                                            //   productItem.color_name === chooseColor
-                                            // }
-                                            value={productItem.color_name}
-                                            onChange={(e) => e}
-                                            className="recheck-input"
-                                            type="radio"
-                                            name="pdp-color"
-                                          />
-                                          <div
-                                            className="recheck-checkbox"
-                                            style={{
-                                              background: `${productItem.color}`,
-                                            }}
-                                          ></div>
-                                        </div>
-                                      )
-                                    )}
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="pdp-row">
-                            <p className="txt">Size:</p>
+                      
                             <div className="pdp-opt-sz">
-                              <div className="cmini-option-row option-size">
-                                <div className="recheck">
-                                  <div className="recheck-block">
-                                    {productItem?.options?.size.map(
-                                      (dataSize, index) => (
-                                        <div
-                                          className="recheck-item"
-                                          key={index}
-                                        >
-                                          <input
-                                            value={dataSize.size_name}
-                                            onChange={(e) => e}
-                                            className="recheck-input"
-                                            type="radio"
-                                            name={` color ${productItem?.id}`}
-                                          />
-                                          <div className="recheck-checkbox">
-                                            <span className="txt">
-                                              {dataSize.size_name}
-                                            </span>
-                                          </div>
-                                        </div>
-                                      )
-                                    )}
-                                  </div>
-                                </div>
-                              </div>
+                              
                               <div className="pdp-price">
                                 <span className="txt">
                                   Model measurements: 48kg - 1m60 - Size S
@@ -240,81 +199,8 @@ const PdpPage = () => {
                               <span className="text">BUY NOW</span>
                             </a>
                           </div>
-                        </>
-                      ) : (
-                        <>
-                          <div className="pdp-row">
-                            <p className="txt">Color: </p>
-                            <div className="pdp-opt-color">
-                              <div className="cmini-option-row option-color">
-                                <div className="recheck">
-                                  <div className="recheck-block">
-                                    <div className="recheck-item">
-                                      <input
-                                        className="recheck-input"
-                                        type="radio"
-                                        name=""
-                                        hidden
-                                        checked
-                                      />
-                                      <div
-                                        className="recheck-checkbox"
-                                        style={{
-                                          background: `${productItem.color}`,
-                                        }}
-                                      ></div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="pdp-row">
-                            <p className="txt">Size:</p>
-                            <div className="pdp-opt-sz">
-                              <div className="cmini-option-row option-size">
-                                <div className="recheck">
-                                  <div className="recheck-block">
-                                    <div className="recheck-item">
-                                      <input
-                                        className="recheck-input"
-                                        type="radio"
-                                        name=""
-                                        hidden
-                                        checked
-                                      />
-                                      <div className="recheck-checkbox">
-                                        <span className="txt">
-                                          {productItem.size_name}
-                                        </span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="pdp-price">
-                                <span className="txt">
-                                  Model measurements: 48kg - 1m60 - Size S
-                                </span>
-                                <button
-                                  className="tlink"
-                                  onClick={handleClickSize}
-                                >
-                                  Size guide
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="pdp-control">
-                            <a className="btn btn-trans" href="/">
-                              <span className="text">ADD TO CART</span>
-                            </a>
-                            <a className="btn btn-pri" href="/">
-                              <span className="text">BUY NOW</span>
-                            </a>
-                          </div>
-                        </>
-                      )} */}
+ 
+                     
 
                       <div className="pdp-more">
                         <p className="txt t-center">

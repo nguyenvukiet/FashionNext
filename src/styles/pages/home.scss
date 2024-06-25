@@ -351,12 +351,7 @@
       .pro-item {
         background-color: #fff;
       }
-      .pro-hover .btn {
-        display: none;
-        @include max(768px) {
-          display: none !important;
-        }
-      }
+
       .pro-hover .cmini-option-row  {
         @include max(768px) {
           display: block !important;

@@ -1,10 +1,17 @@
+import { MainLayout } from "@/component/mainLayouts";
+import HomePage from "@/component/pages/home";
+import { PageName } from "@/config/displayNameConfig";
+import { TNextPageWithLayout } from "@/types/layout.d";
 
-export default function Home() {
+const Index: TNextPageWithLayout = (props) => {
 
   return (
-    <main>
-    
-    
-    </main>
+    <>
+    <HomePage />
+  </>
   );
 }
+Index.Layout = MainLayout;
+Index.displayName = PageName.about;
+
+export default Index;

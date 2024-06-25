@@ -1,8 +1,11 @@
 import { productApi } from "@/api/product";
+import ProductItem from "@/component/comon/productItem/ProductItem";
+import Link from "next/link";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { Navigation, Pagination, EffectCreative } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+
 const HomePage = () => {
   const [listLayout, setListLayout] = useState(4);
   const [activeButton, setActiveButton] = useState(4);
@@ -11,14 +14,15 @@ const HomePage = () => {
     setActiveButton(layout);
   };
 
-  const { data: dataProduct } = useQuery<any>({
-    queryKey: ['DATA_PRODUCT'],
-    queryFn: () =>
-      productApi.getProduct().then((res: any) => {
-        return res
-      }),
-  })
-  console.log(dataProduct+"-loi")
+  const { data: dataProduct, isLoading } = useQuery<any>({
+    queryKey: ["DATA_PRODUCT"],
+    queryFn: productApi.getProduct,
+  });
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
+
+ const productItems = dataProduct?.products?.items;
 
   return (
     <>
@@ -85,15 +89,15 @@ const HomePage = () => {
                 <p className="txt"></p>
                 <div className="pcate-top-title">
                   <div className="pcate-top-list">
-                    <a className="pcate-top-link" href="/">
+                    <Link className="pcate-top-link" href="/">
                       RECHIC
-                    </a>
-                    <a className="pcate-top-link active" href="/">
+                    </Link>
+                    <Link className="pcate-top-link active" href="/">
                       CARACLUB
-                    </a>
-                    <a className="pcate-top-link" href="/">
+                    </Link>
+                    <Link className="pcate-top-link" href="/">
                       DYDY
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="sfilter">
@@ -126,16 +130,14 @@ const HomePage = () => {
                 </div>
               </div>
               <div className="pcate-main">
-                {/* <div
+                <div
                   className="pcate-list sfilter-list-js"
                   data-list={listLayout}
                 >
-                  {products.map((item, index) => (
-                    <Fragment key={item?.id}>
-                      <ProductItem dataItem={item} addToCart={addToCart} />
-                    </Fragment>
+                  {productItems?.map((item, index) => (
+                      <ProductItem key={index} productItem={item}/>
                   ))}
-                </div> */}
+                </div>
               </div>
             </div>
           </div>
@@ -198,3 +200,4 @@ const HomePage = () => {
   );
 };
 export default HomePage;
+

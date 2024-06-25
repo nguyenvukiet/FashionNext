@@ -21,12 +21,7 @@
       transition: 0.3s ease-in-out;
       transform:translateY(110%);
 
-      .btn {
-          display: none;
-        @include max(768px) {
-          display: none;
-        }
-      }
+     
   
       .recheck-block {
           justify-content: center;
@@ -60,14 +55,21 @@
       }
     }
     &-desc {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.8rem;
       padding: 0.8rem 1.5rem;
       background: #fff;
-      @include max(550px) {
-        flex-direction: column;
+      display: flex;
+      gap: 0.8rem;
+      flex-direction:column;
+
+      &-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.8rem;
+        @include max(550px) {
+          flex-direction: column;
+        }
       }
+  
       &-right {
         padding-top: 0.3rem;
         flex-shrink: 0;
@@ -75,6 +77,11 @@
               @include fz-12;
               font-weight: 600;
           }
+      }
+      &-txt {
+        @include lc(2);
+        @include fz-14;
+        color: $color-grey;
       }
     }
     &-name {

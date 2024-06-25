@@ -50,6 +50,9 @@ body {
         font-size: 20px;
     }
 }
+main {
+    min-height:60vh;
+}
 $color-pri: #1A1A1A;
 $color-second: #C75D00;
 $color-third: #EC1C24;
@@ -118,6 +121,7 @@ textarea {
 
 }
 
+main,
 .main,
 .site-main {
     min-height: 65vh;
