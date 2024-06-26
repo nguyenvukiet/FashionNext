@@ -154,11 +154,9 @@ const HomePage = () => {
               <div className="ab-item">
                 <div className="ab-box">
                   <div className="ab-img">
-                    {" "}
                     <img src="/join1.jpg" alt="" />
                   </div>
                   <a className="ab-hover" href="/">
-                    {" "}
                     <span className="ab-hover-inner">
                       <span className="ab-item-title">CARACLUB</span>
                     </span>
@@ -168,11 +166,9 @@ const HomePage = () => {
               <div className="ab-item">
                 <div className="ab-box">
                   <div className="ab-img">
-                    {" "}
                     <img src="/join2.jpg" alt="" />
                   </div>
                   <a className="ab-hover" href="/">
-                    {" "}
                     <span className="ab-hover-inner">
                       <span className="ab-item-title">RECHIC</span>
                     </span>
@@ -182,11 +178,9 @@ const HomePage = () => {
               <div className="ab-item">
                 <div className="ab-box">
                   <div className="ab-img">
-                    {" "}
                     <img src="/join3.jpg" alt="" />
                   </div>
                   <a className="ab-hover" href="/">
-                    {" "}
                     <span className="ab-hover-inner">
                       <span className="ab-item-title">DYDY</span>
                     </span>

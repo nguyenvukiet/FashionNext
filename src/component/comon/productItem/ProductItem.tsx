@@ -33,7 +33,11 @@ export default function ProductItem({ productItem }) {
   const cartID = localStorage.getItem('cartID');
   const addToCart = async (productItem) => {
     await mutationAddtoCart.mutateAsync({
-      cartId : cartID , cartItems: [{sku : productItem.sku , quantity : 1}]
+      cartId : cartID , 
+      cartItems: [{
+        sku : productItem.sku , 
+        quantity : 1
+      }]
     });
   };
   

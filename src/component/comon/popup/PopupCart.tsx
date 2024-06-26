@@ -2,6 +2,8 @@ import { cart } from "@/api/product";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useMutation, useQueryClient } from "react-query";
+import Link from "next/link";
+
 
 const PopupCart = ({ openCart, handleCloseCart }) => {
   // Query to get cart data
@@ -19,16 +21,16 @@ const PopupCart = ({ openCart, handleCloseCart }) => {
   //   return <div>Loading...</div>;
   // }
   const itemCarts = dataCart?.cart?.items;
-
   const queryClient = useQueryClient();
   //remove item in cart
   const mutationRemoveItem = useMutation(
     (data: any) => cart.removeItemCart(data),
     {
-      onSuccess: (res: any) => {
-        console.log("Da xoa san pham thanh cong !");
-        //refetch cart -- update cart khi add san pham vao trong cart
-        queryClient.refetchQueries(["DATA_CART"]);
+      onMutate: () => {
+      },
+      onSuccess: (res : any) => {
+        console.log('Đã xóa sản phẩm thành công!');
+        queryClient.refetchQueries(['DATA_CART']);
       },
       onError: () => {},
     }
@@ -41,12 +43,42 @@ const PopupCart = ({ openCart, handleCloseCart }) => {
     });
   };
 
+  // update plus or minus cart items
+  const mutationUpdateItem = useMutation(
+    (data: any) => cart.updateCart(data),
+    {
+      onMutate: () => {
+      },
+      onSuccess: (res : any) => {
+        console.log('Đã thay đổi số lượng thành công!');
+        queryClient.refetchQueries(['DATA_CART']);
+      },
+      onError: () => {},
+    }
+  );
+
   const decreaseItems = async (item) => {
-    const cartItemUID = item?.product?.uid;
-    await mutationRemoveItem.mutateAsync({
-      removeItemFromCartInput: [
-        { cart_id: cartID, cart_item_uid: cartItemUID, quantity: 1 },
-      ],
+    const cartItemUID = item?.uid;
+    const currentQuantity = item?.quantity
+    console.log("item", item)
+    await mutationUpdateItem.mutateAsync({
+      cartId : cartID , 
+      cartItems: [{
+        cart_item_uid: cartItemUID,
+        quantity : currentQuantity - 1
+      }]
+    });
+  };
+  const increaseItems = async (item) => {
+    const cartItemUID = item?.uid;
+    const currentQuantity = item?.quantity
+    console.log("item", item)
+    await mutationUpdateItem.mutateAsync({
+      cartId : cartID , 
+      cartItems: [{
+        cart_item_uid: cartItemUID,
+        quantity : currentQuantity + 1
+      }]
     });
   };
 
@@ -69,9 +101,9 @@ const PopupCart = ({ openCart, handleCloseCart }) => {
                         <div className="cmini-item" key={index}>
                           <div className="cmini-box">
                             <div className="cmini-img">
-                              <a className="box" href="/">
+                              <Link className="box" href={`/home/${item?.product?.url_key}`}>
                                 <img src={item.product.image.url} alt="" />
-                              </a>
+                              </Link>
                             </div>
                             <div className="cmini-desc">
                               <div className="cmini-desc-top">
@@ -122,10 +154,7 @@ const PopupCart = ({ openCart, handleCloseCart }) => {
                                 <div className="cmini-price">
                                   <div className="price">
                                     <span className="price-new">
-                                      {/* {(
-                                            item.price * item.quantity
-                                          ).toLocaleString()}{" "}
-                                          {item.currency} */}
+                             
                                     </span>
                                   </div>
                                 </div>

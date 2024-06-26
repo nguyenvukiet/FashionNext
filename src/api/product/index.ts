@@ -273,6 +273,18 @@ export const REMOVE_ITEM = gql`
     }
   }
 `;
+export const UPDATE_CART = gql`
+  mutation updateCartItem($input: UpdateCartItemsInput) {
+  updateCartItems(input: $input) {
+    cart {
+      email
+      id
+      is_virtual
+      total_quantity
+    }
+  }
+}
+`;
 
 export const cart = {
   generateCart: async () => {
@@ -323,7 +335,14 @@ export const cart = {
           cart_item_uid: data.cart_item_uid,
         },
       });
-   
+  },
+  updateCart: async (data: any) => {
+    return await graphQLClient.request(UPDATE_CART, {
+      input: {
+        cart_id: data.cartId,
+        cart_items: data.cartItems,
+      }
+    });
   },
 };
 
