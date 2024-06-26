@@ -317,16 +317,13 @@ export const cart = {
     }
   },
   removeItemCart: async (data: any) => {
-    try {
-      return await graphQLClientGet.request(REMOVE_ITEM, {
+      return await graphQLClient.request(REMOVE_ITEM, {
         removeItemFromCartInput: {
           cart_id: data.cart_id,
           cart_item_uid: data.cart_item_uid,
         },
       });
-    } catch (error) {
-      console.error('Error remove item in cart:', error)
-    }
+   
   },
 };
 

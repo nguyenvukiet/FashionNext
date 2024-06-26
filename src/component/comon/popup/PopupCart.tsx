@@ -18,16 +18,13 @@ const PopupCart = ({ openCart, handleCloseCart }) => {
   // if (isLoading) {
   //   return <div>Loading...</div>;
   // }
-  console.log("dataCart: ", dataCart);
   const itemCarts = dataCart?.cart?.items;
-  console.log("item cart: ", itemCarts);
 
   const queryClient = useQueryClient();
   //remove item in cart
   const mutationRemoveItem = useMutation(
     (data: any) => cart.removeItemCart(data),
     {
-      onMutate: () => {},
       onSuccess: (res: any) => {
         console.log("Da xoa san pham thanh cong !");
         //refetch cart -- update cart khi add san pham vao trong cart
@@ -36,9 +33,8 @@ const PopupCart = ({ openCart, handleCloseCart }) => {
       onError: () => {},
     }
   );
-  // const cartItemUID = itemCarts?.product?.uid
   const removeItemCart = async (item) => {
-    const cartItemUID = item?.product?.uid;
+    const cartItemUID = item?.uid;
     await mutationRemoveItem.mutateAsync({
       cart_id: cartID, 
       cart_item_uid: cartItemUID 
@@ -150,7 +146,7 @@ const PopupCart = ({ openCart, handleCloseCart }) => {
                           </div>
                         </div>
                         <div className="popup-cart-right">
-                          {/* <p className="txt">{totalPrice()}Đ</p> */}
+                          <p className="txt">{dataCart?.cart?.prices?.grand_total?.value} - VND</p>
                         </div>
                       </div>
                       <div className="popup-cart-btn">

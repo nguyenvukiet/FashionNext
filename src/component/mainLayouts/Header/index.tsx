@@ -2,17 +2,25 @@ import PopupCart from "@/component/comon/popup/PopupCart";
 import PopupLogin from "@/component/comon/popup/PopupLogin";
 import Link from "next/link";
 import React, { useContext, useEffect, useRef, useState } from "react";
-// import PopupCart from "../popupTemplate/popupCart";
-// import PopupLogin from "../popupTemplate/popupLogin";
-// import { Link } from "react-router-dom";
-// // import useCart from "../../hook/useCart";
-// import { CartContext  } from "../../hook/useCart";
+import { useQuery } from "react-query";
+import { cart } from "@/api/product";
+
 
 
 
 const Header = () => {
-//   const { totalQuantity } =useContext(CartContext);
-//   // const { cartItems } = useCart();
+
+  const cartID =
+  typeof window !== "undefined" ? localStorage.getItem("cartID") : "";
+
+  const { data: dataCart, isLoading } = useQuery<any>({
+    queryKey: ["DATA_CART", cartID],
+    queryFn: () =>
+      cart.getCart({ cartId: cartID }).then((res: any) => {
+        return res;
+      }),
+  });
+
 
 //   //show mobile nav
   const [openMobile, setOpenMobile] = useState(false);
@@ -35,26 +43,26 @@ const Header = () => {
   const handleCloseSrch = () => {
     setOpenSrch(false);
   };
-//   useEffect(() => {
-//     const handleClickOutside = (event) => {
-//       if (
-//         buttonRef.current &&
-//         !buttonRef.current.contains(event.target) &&
-//         searchRef.current &&
-//         !searchRef.current.contains(event.target)
-//       ) {
-//         handleCloseSrch();
-//       }
-//     };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target) &&
+        searchRef.current &&
+        !searchRef.current.contains(event.target)
+      ) {
+        handleCloseSrch();
+      }
+    };
 
-//     // Thêm event listener khi component mount
-//     document.addEventListener("mousedown", handleClickOutside);
+    // Thêm event listener khi component mount
+    document.addEventListener("mousedown", handleClickOutside);
 
-//     // Dọn dẹp event listener khi component unmount
-//     return () => {
-//       document.removeEventListener("mousedown", handleClickOutside);
-//     };
-//   }, []);
+    // Dọn dẹp event listener khi component unmount
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
 //   //show popup cart--------------------------------------------------------
   const [openCart, setOpenCart] = useState(false);
@@ -187,7 +195,7 @@ const Header = () => {
                       <img src="/cart.svg" alt="" />
                     </span>
                     {/* <span className="text">{totalQuantity()}</span> */}
-                    <span className="text">{1}</span>
+                    <span className="text">{dataCart?.cart?.total_quantity}</span>
                   </button>
                 </div>
               </div>

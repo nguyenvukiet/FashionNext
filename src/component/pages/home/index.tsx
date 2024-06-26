@@ -24,6 +24,7 @@ const HomePage = () => {
 
  const productItems = dataProduct?.products?.items;
 
+
   return (
     <>
       <div className="bn">
@@ -136,7 +137,7 @@ const HomePage = () => {
                 >
                   {productItems?.map((item, index) => (
                       <ProductItem key={index} productItem={item}/>
-                  ))}
+                  ))} 
                 </div>
               </div>
             </div>

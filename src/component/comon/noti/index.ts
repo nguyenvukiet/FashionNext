@@ -4,7 +4,7 @@ import { message } from "antd";
 export const success = () => {
   message.open({
     type: "success",
-    content: "This is a success message",
+    content: "ADD TO CART SUCCESSFULLY !",
   });
 };
 

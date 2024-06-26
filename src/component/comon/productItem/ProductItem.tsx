@@ -2,7 +2,7 @@ import { cart } from "@/api/product";
 import Link from "next/link";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
-
+import { success } from '@/component/comon/noti';
 
 
 
@@ -20,6 +20,7 @@ export default function ProductItem({ productItem }) {
       onSuccess: (res: any) => {
         console.log("Thêm vào giỏ hàng thành công !");
         setIsAdding(false);
+        success();
         //refetch cart -- update cart khi add san pham vao trong cart
         queryClient.refetchQueries(['DATA_CART'])
       },
