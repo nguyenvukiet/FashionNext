@@ -2,7 +2,7 @@ import { cart } from "@/api/product";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import Link from "next/link";
-import CminiItem from "@/component/comon/productItem/CminiItem";
+import CminiItem from "../productItem/CminiItem";
 
 
 const PopupCart = ({ openCart, handleCloseCart }) => {
