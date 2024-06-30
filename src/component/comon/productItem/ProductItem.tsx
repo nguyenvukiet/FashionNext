@@ -3,10 +3,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { success } from '@/component/comon/noti';
-
+import { Spin } from 'antd';
 
 
 export default function ProductItem({ productItem }) {
+  const { Spin } = require('antd');
 
   const queryClient = useQueryClient();
   const [isAdding, setIsAdding] = useState(false);
@@ -48,6 +49,8 @@ export default function ProductItem({ productItem }) {
       <div className="pro-item">
         <div className="pro-box">
           <div className="pro-img">
+          {isAdding && <Spin tip="Loading..." />} 
+
             <Link className="box" href={`/home/${productItem.url_key}`}>
               <img src={productItem.thumbnail.url} alt="" />
               <span className=" box-hover">

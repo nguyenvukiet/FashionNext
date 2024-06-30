@@ -7,6 +7,15 @@
               transform:translateY(0);
           }
       }
+      .ant-skeleton {
+        width:100% !important;
+        height:100% !important;
+
+        &-image {
+          width:100% !important; 
+          height:100% !important;
+        }
+      }
     }
     &-hover {
       position: absolute;
@@ -31,6 +40,15 @@
       padding-top: calc((950 / 716) * 100%);
       position: relative;
       overflow: hidden;
+      .ant-spin {
+        position: absolute;
+        inset:0;
+        z-index:3;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:rgba(255,255,255,0.5);
+      }
       .box {
         display: block;
         @include imgCover;

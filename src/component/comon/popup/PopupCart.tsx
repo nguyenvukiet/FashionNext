@@ -1,12 +1,13 @@
 import { cart } from "@/api/product";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { useMutation, useQueryClient } from "react-query";
 import Link from "next/link";
+import CminiItem from "@/component/comon/productItem/CminiItem";
 
 
 const PopupCart = ({ openCart, handleCloseCart }) => {
   // Query to get cart data
+
   const cartID =
     typeof window !== "undefined" ? localStorage.getItem("cartID") : "";
 
@@ -21,66 +22,7 @@ const PopupCart = ({ openCart, handleCloseCart }) => {
   //   return <div>Loading...</div>;
   // }
   const itemCarts = dataCart?.cart?.items;
-  const queryClient = useQueryClient();
-  //remove item in cart
-  const mutationRemoveItem = useMutation(
-    (data: any) => cart.removeItemCart(data),
-    {
-      onMutate: () => {
-      },
-      onSuccess: (res : any) => {
-        console.log('Đã xóa sản phẩm thành công!');
-        queryClient.refetchQueries(['DATA_CART']);
-      },
-      onError: () => {},
-    }
-  );
-  const removeItemCart = async (item) => {
-    const cartItemUID = item?.uid;
-    await mutationRemoveItem.mutateAsync({
-      cart_id: cartID, 
-      cart_item_uid: cartItemUID 
-    });
-  };
 
-  // update plus or minus cart items
-  const mutationUpdateItem = useMutation(
-    (data: any) => cart.updateCart(data),
-    {
-      onMutate: () => {
-      },
-      onSuccess: (res : any) => {
-        console.log('Đã thay đổi số lượng thành công!');
-        queryClient.refetchQueries(['DATA_CART']);
-      },
-      onError: () => {},
-    }
-  );
-
-  const decreaseItems = async (item) => {
-    const cartItemUID = item?.uid;
-    const currentQuantity = item?.quantity
-    console.log("item", item)
-    await mutationUpdateItem.mutateAsync({
-      cartId : cartID , 
-      cartItems: [{
-        cart_item_uid: cartItemUID,
-        quantity : currentQuantity - 1
-      }]
-    });
-  };
-  const increaseItems = async (item) => {
-    const cartItemUID = item?.uid;
-    const currentQuantity = item?.quantity
-    console.log("item", item)
-    await mutationUpdateItem.mutateAsync({
-      cartId : cartID , 
-      cartItems: [{
-        cart_item_uid: cartItemUID,
-        quantity : currentQuantity + 1
-      }]
-    });
-  };
 
   return (
     <div className={`popup popup-cart ${openCart ? "open" : ""}`}>
@@ -98,70 +40,7 @@ const PopupCart = ({ openCart, handleCloseCart }) => {
                   <div className="popup-cart-list">
                     <div className="cmini-list">
                       {itemCarts?.map((item, index) => (
-                        <div className="cmini-item" key={index}>
-                          <div className="cmini-box">
-                            <div className="cmini-img">
-                              <Link className="box" href={`/home/${item?.product?.url_key}`}>
-                                <img src={item.product.image.url} alt="" />
-                              </Link>
-                            </div>
-                            <div className="cmini-desc">
-                              <div className="cmini-desc-top">
-                                <a className="cmini-name" href="/">
-                                  {item.product.name}
-                                </a>
-                                <div className="cmini-desc-control">
-                                  <button
-                                    className="cmini-remove"
-                                    onClick={() => removeItemCart(item)}
-                                  >
-                                    <i className="fa-regular fa-trash-can"></i>
-                                  </button>
-                                </div>
-                              </div>
-                              <div className="cmini-option">
-                                <div className="cmini-option-txt">
-                                  <div className="cmini-option-op">
-                                    <span className="sub">Price: </span>
-                                    <span className="txt fw-6">
-                                      {item.prices.price.value} - VND
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="cmini-quan">
-                                <div className="quantity">
-                                  <div className="quantity-count">
-                                    <div className="count">
-                                      <button
-                                        className="count-btn count-minus"
-                                        onClick={() => decreaseItems(item)}
-                                      >
-                                        <i className="fas fa-minus icon"></i>
-                                      </button>
-                                      <p className="count-number">
-                                        {item.quantity}
-                                      </p>
-                                      <button
-                                        className="count-btn count-plus"
-                                        onClick={() => increaseItems(item)}
-                                      >
-                                        <i className="fas fa-plus icon"></i>
-                                      </button>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="cmini-price">
-                                  <div className="price">
-                                    <span className="price-new">
-                             
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                        <CminiItem key={index} cminiItem={item}/>
                       ))}
                     </div>
                   </div>

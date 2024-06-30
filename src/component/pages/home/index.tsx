@@ -135,9 +135,10 @@ const HomePage = () => {
                   className="pcate-list sfilter-list-js"
                   data-list={listLayout}
                 >
+       
                   {productItems?.map((item, index) => (
                       <ProductItem key={index} productItem={item}/>
-                  ))} 
+                  ))}   
                 </div>
               </div>
             </div>
