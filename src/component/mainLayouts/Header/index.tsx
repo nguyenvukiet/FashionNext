@@ -2,27 +2,15 @@ import PopupCart from "@/component/comon/popup/PopupCart";
 import PopupLogin from "@/component/comon/popup/PopupLogin";
 import Link from "next/link";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { useQuery } from "react-query";
+import { useCart } from "@/api/cart/useCart";
 import { cart } from "@/api/product";
-
-
 
 
 const Header = () => {
 
-  const cartID =
-  typeof window !== "undefined" ? localStorage.getItem("cartID") : "";
+  const {quantityTotal} = useCart();
 
-  const { data: dataCart, isLoading } = useQuery<any>({
-    queryKey: ["DATA_CART", cartID],
-    queryFn: () =>
-      cart.getCart({ cartId: cartID }).then((res: any) => {
-        return res;
-      }),
-  });
-
-
-//   //show mobile nav
+  //show mobile nav
   const [openMobile, setOpenMobile] = useState(false);
   const handleClickMobile = () => {
     setOpenMobile((prevState) => !prevState);
@@ -66,6 +54,7 @@ const Header = () => {
 
 //   //show popup cart--------------------------------------------------------
   const [openCart, setOpenCart] = useState(false);
+
   const handleClickCart = () => {
     // setOpenCart(prevState => !prevState);
     setOpenCart(true);
@@ -194,8 +183,7 @@ const Header = () => {
                     <span className="icon">
                       <img src="/cart.svg" alt="" />
                     </span>
-                    {/* <span className="text">{totalQuantity()}</span> */}
-                    <span className="text">{dataCart?.cart?.total_quantity}</span>
+                    <span className="text">{quantityTotal}</span>
                   </button>
                 </div>
               </div>

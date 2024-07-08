@@ -1,11 +1,10 @@
 import '../styles/style.scss'
 import { TAppPropsWithLayout } from "@/types/layout.d";
 import BlankLayout from "@/component/mainLayouts/blankLayouts";
-import Header from "@/component/mainLayouts/Header";
-import Footer from "@/component/mainLayouts/Footer";
 import "swiper/css";
 import "swiper/css/effect-creative";
 import { QueryClientProvider, QueryClient } from 'react-query';
+import { CartProvider } from '@/api/cart/useCart';
 
 const queryClientConfig: QueryClientConfig = {
   defaultOptions: {
@@ -22,9 +21,11 @@ export default function App({ Component, pageProps }: TAppPropsWithLayout) {
   return(
     <>
     <QueryClientProvider client={queryClient}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <CartProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </CartProvider>
     </QueryClientProvider>
     </>
   );

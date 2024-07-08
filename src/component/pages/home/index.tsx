@@ -1,7 +1,8 @@
 import { productApi } from "@/api/product";
 import ProductItem from "@/component/comon/productItem/ProductItem";
 import Link from "next/link";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Navigation, Pagination, EffectCreative } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,7 +10,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 const HomePage = () => {
   const [listLayout, setListLayout] = useState(4);
   const [activeButton, setActiveButton] = useState(4);
-  const handleChangeLayout = (layout) => {
+  const handleChangeLayout = (layout:any) => {
     setListLayout(layout);
     setActiveButton(layout);
   };
@@ -22,7 +23,7 @@ const HomePage = () => {
   //   return <div>Loading...</div>;
   // }
 
- const productItems = dataProduct?.products?.items;
+ const productItems:any = dataProduct?.products?.items;
 
 
   return (
@@ -135,10 +136,18 @@ const HomePage = () => {
                   className="pcate-list sfilter-list-js"
                   data-list={listLayout}
                 >
-       
-                  {productItems?.map((item, index) => (
+                  {/* {isLoading && <ProductItemSkeleton />} */}
+                  {productItems?.map((item:any, index) => (
                       <ProductItem key={index} productItem={item}/>
-                  ))}   
+                    ))}
+                  {/* {isLoading ? (
+                    <ProductItemSkeleton/>
+                  ) : (
+                    productItems?.map((item:any, index) => (
+                      <ProductItem key={index} productItem={item}/>
+                    ))  
+                  )} */}
+                  
                 </div>
               </div>
             </div>

@@ -2,13 +2,12 @@ import { cart } from "@/api/product";
 import Link from "next/link";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { success } from '@/component/comon/noti';
-import { Spin } from 'antd';
+import { success } from "../noti";
 
 
 export default function ProductItem({ productItem }) {
   const { Spin } = require('antd');
-
+  const { success } = require('../noti');
   const queryClient = useQueryClient();
   const [isAdding, setIsAdding] = useState(false);
 

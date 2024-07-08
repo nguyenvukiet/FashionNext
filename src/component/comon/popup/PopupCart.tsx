@@ -1,28 +1,10 @@
-import { cart } from "@/api/product";
-import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
-import Link from "next/link";
 import CminiItem from "../productItem/CminiItem";
+import { useCart } from "@/api/cart/useCart";
 
 
 const PopupCart = ({ openCart, handleCloseCart }) => {
-  // Query to get cart data
 
-  const cartID =
-    typeof window !== "undefined" ? localStorage.getItem("cartID") : "";
-
-  const { data: dataCart, isLoading } = useQuery<any>({
-    queryKey: ["DATA_CART", cartID],
-    queryFn: () =>
-      cart.getCart({ cartId: cartID }).then((res: any) => {
-        return res;
-      }),
-  });
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-  const itemCarts = dataCart?.cart?.items;
-
+  const {itemCarts, grandTotal, isLoading} = useCart();
 
   return (
     <div className={`popup popup-cart ${openCart ? "open" : ""}`}>
@@ -54,7 +36,7 @@ const PopupCart = ({ openCart, handleCloseCart }) => {
                           </div>
                         </div>
                         <div className="popup-cart-right">
-                          <p className="txt">{dataCart?.cart?.prices?.grand_total?.value} - VND</p>
+                          <p className="txt">{grandTotal} - VND</p>
                         </div>
                       </div>
                       <div className="popup-cart-btn">
